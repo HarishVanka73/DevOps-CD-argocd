@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 
+    repoURL: https://github.com/HarishVanka73/DevOps-CD-argocd.git
     targetRevision: main         # chart always comes from main
     path: charts/workflow-service/templates
     helm:
