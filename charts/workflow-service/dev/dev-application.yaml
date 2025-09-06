@@ -11,7 +11,7 @@ spec:
     path: charts/my-java-app
     helm:
       valueFiles:
-        - values-dev.yaml        # values file in dev branch
+        - dev-values.yaml        # values file in dev branch
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
