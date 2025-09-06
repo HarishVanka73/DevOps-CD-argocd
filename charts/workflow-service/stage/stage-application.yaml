@@ -11,10 +11,10 @@ spec:
     path: charts/my-java-app
     helm:
       valueFiles:
-        - values-dev.yaml        # values file in dev branch
+        - stage-values.yaml        # values file in stage branch
   destination:
     server: https://kubernetes.default.svc
-    namespace: dev
+    namespace: stage
   syncPolicy:
     automated:
       prune: true
