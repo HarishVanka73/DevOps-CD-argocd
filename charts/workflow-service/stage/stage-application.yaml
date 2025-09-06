@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-java-app-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/org/gitops-repo.git
+    targetRevision: main         # chart always comes from main
+    path: charts/my-java-app
+    helm:
+      valueFiles:
+        - values-dev.yaml        # values file in dev branch
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
