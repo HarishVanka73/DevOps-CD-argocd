@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: my-java-app-dev
+  name: workflow-service-dev
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/org/gitops-repo.git
+    repoURL: 
     targetRevision: main         # chart always comes from main
-    path: charts/my-java-app
+    path: charts/workflow-service/templates
     helm:
       valueFiles:
         - dev-values.yaml        # values file in dev branch
