@@ -18,9 +18,6 @@ prometheus:
   scrape: "true"
   port: "8081"
 
-serviceAccount:
-  name: myservice-sa
-
 env:
   javaOpts: "-Xms512m -Xmx1024m"
   springProfile:
