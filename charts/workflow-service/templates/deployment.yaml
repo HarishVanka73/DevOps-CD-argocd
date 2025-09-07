@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "myservice.fullname" . }}
+  name: {{ .Values.myservice.fullname }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ include "myservice.name" . }}
+    app: {{ .Values.myservice.name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -18,11 +18,11 @@ spec:
       maxSurge: {{ .Values.strategy.rollingUpdate.maxSurge }}
   selector:
     matchLabels:
-      app: {{ include "myservice.name" . }}
+      app: {{ .Values.myservice.name }}
   template:
     metadata:
       labels:
-        app: {{ include "myservice.name" . }}
+        app: {{ .Values.myservice.name }}
       annotations:
         prometheus.io/scrape: "{{ .Values.prometheus.scrape }}"
         prometheus.io/port: "{{ .Values.prometheus.port }}"
