@@ -13,7 +13,10 @@ image:
 
 container:
   port: 8081
+  
 service:
+  fullname: my-app-dev   
+  name: my-app           
   type: LoadBalancer     
   port: 80             
   targetPort: 8081     
@@ -25,7 +28,7 @@ prometheus:
 env:
   javaOpts: "-Xms512m -Xmx1024m"
   springProfile:
-    configMapName: myservice-config
+    configMapName: myapp-config
     key: activeProfile
 
 resources:
