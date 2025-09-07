@@ -1,14 +1,41 @@
-replicaCount: 2
+replicaCount: 3
+revisionHistoryLimit: 5
+
+strategy:
+  rollingUpdate:
+    maxUnavailable: 1
+    maxSurge: 1
 
 image:
-  repository: 123456789012.dkr.ecr.us-east-1.amazonaws.com/myservice
+  repository: myrepo/myservice
   tag: latest
-  pullPolicy: Always
-
-service:
-  type: LoadBalancer
-  port: 80          # Exposed service port (external)
-  targetPort: 8081  # Container port that service forwards to
+  pullPolicy: IfNotPresent
 
 container:
-  port: 8081        # The port app listens on inside container
+  port: 8081
+
+prometheus:
+  scrape: "true"
+  port: "8081"
+
+serviceAccount:
+  name: myservice-sa
+
+env:
+  javaOpts: "-Xms512m -Xmx1024m"
+  springProfile:
+    configMapName: myservice-config
+    key: activeProfile
+
+resources:
+  requests:
+    cpu: "250m"
+    memory: "512Mi"
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
+
+dnsPolicy: Default
+restartPolicy: Always
+
+imagePullSecrets: my-docker-secret
