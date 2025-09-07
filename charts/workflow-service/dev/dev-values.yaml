@@ -8,7 +8,7 @@ image:
 service:
   type: LoadBalancer
   port: 80          # Exposed service port (external)
-  targetPort: 8080  # Container port that service forwards to
+  targetPort: 8081  # Container port that service forwards to
 
 container:
-  port: 8080        # The port app listens on inside container
+  port: 8081        # The port app listens on inside container
