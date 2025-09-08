@@ -15,7 +15,7 @@ container:
   port: 8081
   
 service:
-  fullname: my-app-dev   
+  fullname: dev-my-app   
   name: my-app           
   type: LoadBalancer     
   port: 80             
