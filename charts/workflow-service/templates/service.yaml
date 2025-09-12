@@ -4,6 +4,12 @@ metadata:
   name: {{ .Values.myservice.fullname }}
   labels:
     app: {{ .Values.myservice.name }}
+  annotations:
+    {{- if .Values.myservice.prometheus.enabled }}
+    prometheus.io/scrape: "{{ .Values.myservice.prometheus.scrape }}"
+    prometheus.io/port: "{{ .Values.myservice.prometheus.port }}"
+    prometheus.io/path: "{{ .Values.myservice.prometheus.path }}"
+    {{- end }}
 spec:
   type: {{ .Values.service.type }}
   selector:
