@@ -14,16 +14,31 @@ image:
 container:
   port: 8081
   
-service:
-  fullname: dev-my-app   
-  name: my-app           
-  type: LoadBalancer     
-  port: 80             
-  targetPort: 8081     
+image:
+  repository: myrepo/myservice
+  tag: latest
+  pullPolicy: IfNotPresent
 
-prometheus:
-  scrape: "true"
-  port: "8081"
+container:
+  port: 8081
+
+service:
+  name: my-app
+  fullname: dev-my-app
+  type: LoadBalancer
+  port: 80
+  targetPort: 8081
+  prometheus:
+    enabled: true
+    scrape: "true"
+    port: "8081"
+    path: "/metrics"
+
+env:
+  javaOpts: "-Xms512m -Xmx1024m"
+  springProfile:
+    configMapName: myapp-config
+    key: activeProfile
 
 env:
   javaOpts: "-Xms512m -Xmx1024m"
