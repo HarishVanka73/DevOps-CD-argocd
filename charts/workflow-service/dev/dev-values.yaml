@@ -6,6 +6,15 @@ strategy:
     maxUnavailable: 1
     maxSurge: 1
 
+myservice:
+  name: my-app
+  fullname: dev-my-app
+  prometheus:
+    enabled: true
+    scrape: "true"
+    port: "8081"
+    path: "/metrics"
+
 image:
   repository: myrepo/myservice
   tag: latest
@@ -13,17 +22,6 @@ image:
 
 container:
   port: 8081
-
-service:
-  name: my-app
-  fullname: dev-my-app
-  type: LoadBalancer
-  port: 80
-  targetPort: 8081
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "8081"
-    prometheus.io/path: "/metrics"
 
 env:
   javaOpts: "-Xms512m -Xmx1024m"
@@ -40,5 +38,14 @@ resources:
     memory: "1Gi"
 
 dnsPolicy: Default
+restartPolicy: Always
 
 imagePullSecrets: my-docker-secret
+
+serviceAccount:
+  name: myservice-sa
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 8081
