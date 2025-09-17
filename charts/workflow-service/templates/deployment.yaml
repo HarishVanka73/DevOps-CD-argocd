@@ -27,7 +27,6 @@ spec:
         prometheus.io/scrape: "{{ .Values.prometheus.scrape }}"
         prometheus.io/port: "{{ .Values.prometheus.port }}"
     spec:
-      serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
         - name: {{ include "myservice.name" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -53,5 +52,3 @@ spec:
               memory: {{ .Values.resources.limits.memory }}
       dnsPolicy: {{ .Values.dnsPolicy }}
       restartPolicy: {{ .Values.restartPolicy }}
-      imagePullSecrets:
-        - name: {{ .Values.imagePullSecrets }}
