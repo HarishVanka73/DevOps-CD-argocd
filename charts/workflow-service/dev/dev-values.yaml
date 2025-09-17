@@ -40,9 +40,6 @@ resources:
 dnsPolicy: Default
 restartPolicy: Always
 
-serviceAccount:
-  name: myservice-sa
-
 service:
   type: LoadBalancer
   port: 80
