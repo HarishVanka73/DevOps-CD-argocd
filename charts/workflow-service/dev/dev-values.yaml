@@ -40,8 +40,6 @@ resources:
 dnsPolicy: Default
 restartPolicy: Always
 
-imagePullSecrets: my-docker-secret
-
 serviceAccount:
   name: myservice-sa
 
